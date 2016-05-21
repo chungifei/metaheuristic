@@ -1,8 +1,12 @@
-C++ = clang++
-CPPFLAGS = -march=native -std=gnu++14 -Wall
+C++ = g++
+CPPFLAGS = -march=corei7-avx -std=gnu++14 -Wall
+XOVER = -DUSE_OP
+TRAJ = -DUSE_II_FI
+POSTFIX = iifi
 debug:
-	$(C++) $(CPPFLAGS) -Wextra -Werror -g -O0 PFSP.cpp -o PFSP
+	$(C++) $(CPPFLAGS) $(XOVER) $(TRAJ) -Wextra -Werror -g -O0 pfsp.cpp -o pfsp_$(POSTFIX)
 release:
-	$(C++) $(CPPFLAGS) -O3 PFSP.cpp -o PFSP 
+	$(C++) $(CPPFLAGS) $(XOVER) $(TRAJ) -O3 pfsp.cpp -o pfsp_$(POSTFIX)
 fast:
-	$(C++) $(CPPFLAGS) -Ofast PFSP.cpp -o PFSP
+	$(C++) $(CPPFLAGS) $(XOVER) $(TRAJ) -Ofast pfsp.cpp -o pfsp_$(POSTFIX)
+
